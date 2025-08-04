@@ -1,6 +1,6 @@
-﻿# 🔧 LuaModEngine – Lightweight Lua Modding for Java Projects
+﻿# 🔧 ModEngine – Lightweight Lua Modding for Java Projects
 
-**LuaModEngine** is a simple and powerful library that enables Lua scripting support in any Java application. It’s perfect for adding modding support to your games or tools — letting users write custom behavior in Lua, safely and easily.
+**ModEngine** is a simple and powerful library that enables Lua scripting support in any Java application. It’s perfect for adding modding support to your games or tools — letting users write custom behavior in Lua, safely and easily.
 
 ---
 
@@ -10,7 +10,6 @@
 - 🧠 Register your own Java functions and objects to be called from Lua
 - 📜 Run Lua scripts from files or inline strings
 - 📂 Load mod scripts from a folder
-- 🔌 Optional `LuaMod` interface for modular plugin-like architecture
 
 ---
 
@@ -58,25 +57,7 @@ engine.runScript(new File("mods/my_script.lua"));
 ```java
 engine.loadAllMods(new File("mods/"));
 ```
-🔌 Modular Plugin Interface (Optional) For more structured modding:
-```java
-public class MyMod implements LuaMod {
-    @Override
-    public void register(ModdingEngine engine) {
-        engine.registerFunction("spawn", new OneArgFunction() {
-            public LuaValue call(LuaValue what) {
-                System.out.println("Spawning: " + what);
-                return LuaValue.valueOf("id_001");
-            }
-        });
-    }
-}
-```
-Then use:
 
-```java
-engine.registerMod(new MyMod());
-```
 🧪 Example Lua Script
 ```lua
 local id = spawn("dragon")

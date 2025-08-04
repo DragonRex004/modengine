@@ -7,6 +7,7 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class ModEngine {
     private final Globals lua;
@@ -30,6 +31,15 @@ public class ModEngine {
             chunk.call();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void loadAllMods(File modFolder) {
+        File[] scripts = modFolder.listFiles((dir, name) -> name.endsWith(".lua"));
+        if (scripts != null) {
+            for (File script : scripts) {
+                runScript(script);
+            }
         }
     }
 
